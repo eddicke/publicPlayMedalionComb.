@@ -17,6 +17,10 @@ io.on('connection', function(socket){
   socket.on('ademola', function(gme){
     io.emit('ademola', gme);
   });
+  //player2
+  socket.on('player2', function(hunts){
+    io.emit('player2', hunts);
+  });
 });
 
 http.listen(port, function(){
