@@ -76,7 +76,21 @@ Your browser does not support the HTML5 canvas tag.</canvas>
             // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
             var ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
         //multiplayer tryout----------------------------------------------
-          var online = 0;
+        
+          ////////////////MULT//////////////////////////////////////////
+            return scene;
+        
+        };
+        
+        var scene = createScene();
+        engine.runRenderLoop(function () {
+            scene.render();
+        });
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+        var online = 0;
       
       $(function () {
         var socket = io();
@@ -156,8 +170,8 @@ var ctx = c.getContext("2d");
           alert("that's nice");
 ctx.rect(20, 20, 150, 100);
 ctx.stroke();
-       sphere.position.y += 1;
-          sphere.dispose();
+      // sphere.position.y += 1;
+        //  sphere.dispose();
         })
    /* else if (this.value == 'bar'){
         $(this).css('backgroundColor','green');
@@ -180,20 +194,6 @@ ctx.stroke();
         });
       });
           
-          ////////////////MULT//////////////////////////////////////////
-            return scene;
-        
-        };
-        
-        var scene = createScene();
-        engine.runRenderLoop(function () {
-            scene.render();
-        });
-        // Resize
-        window.addEventListener("resize", function () {
-            engine.resize();
-        });
-      
     </script>
   </body>
 </html>
