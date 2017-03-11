@@ -43,9 +43,8 @@ Your browser does not support the HTML5 canvas tag.</canvas>
     <script src="https://cdn-orig.socket.io/socket.io-1.2.0.js"></script>
      <script src="index.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  
-    <script>
-         var canvas = document.getElementById("renderCanvas");
+  <script>
+    var canvas = document.getElementById("renderCanvas");
         var engine = new BABYLON.Engine(canvas, true);
         var createScene = function () {
         
@@ -90,6 +89,10 @@ Your browser does not support the HTML5 canvas tag.</canvas>
         window.addEventListener("resize", function () {
             engine.resize();
         });
+    
+    </script>
+    <script>
+        
         var online = 0;
       
       $(function () {
