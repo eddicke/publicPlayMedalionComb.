@@ -145,9 +145,7 @@ sphere2.material =  materialSphere2
          sphere2.setEnabled(true);
       socket.emit('ademola', 'try meee');
       socket.emit('player2', 'hunts');
-        socket.on('player2', function(hunts){
-           sphere.dispose();
-         });
+      
      var go = function(){
      sphere.dispose()
      }
@@ -187,6 +185,11 @@ sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.picke
          
         var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
+        ///////////////
+        socket.on('player2', function(hunts){
+           sphere.dispose();
+         });
+        ///////////////
         var pickResult = scene.pick(scene.pointerX, scene.pointerY)
         
          socket.on('ademola', function(gme){
