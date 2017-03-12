@@ -50,11 +50,8 @@ Your browser does not support the HTML5 canvas tag.</canvas>
         var engine = new BABYLON.Engine(canvas, true);
         var createScene = function () {
         
-            // This creates a basic Babylon Scene object (non-mesh)
             var scene = new BABYLON.Scene(engine);
-        
-            // This creates and positions a free camera (non-mesh)
-            var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+ var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
         
             // This targets the camera to scene origin
             camera.setTarget(BABYLON.Vector3.Zero());
@@ -88,24 +85,8 @@ Your browser does not support the HTML5 canvas tag.</canvas>
           socket.on('chat message', function(msg){
              console.log(msg);
              //document.getElementById("myBtn").innerHTML = 'nice bruh';
-            online += 1;
+            
              document.getElementById('para').innerHTML = online;
-             if(online > 3){
-               online = 3
-             }
-              if(online === 3){
-             document.getElementById('para').onclick = function(){
-             alert('hi');
-               socket.emit('chat message', 'you there');
-               /*socket.emit('chat message', 'you there');
-               socket.on('chat message', function(msg){
-                 document.getElementById("myBtn").innerHTML = msg;
-               });*/
-             }
-             socket.on('chat message', function(msg){
-                 document.getElementById("myBtn").innerHTML = msg;
-               })
-            }
           })
          
 });
@@ -132,111 +113,32 @@ sphere2.material =  materialSphere2
          document.getElementById("myBtn").innerHTML = 'right!';
        });
           }
-       setInterval(function(){
+       
       socket.on('chat message', function(msg){
-      
-         document.getElementById("myBtn").style.width += msg;
-        });
+      //listen to button event
        });
-         var pickResult = scene.pick(scene.pointerX, scene.pointerY)
+        
         $("#m").keyup(function(e) { 
     if (this.value == 'foo'){
         $(this).css('backgroundColor','red');
          sphere2.setEnabled(true);
       socket.emit('ademola', 'try meee');
-      
-      socket.emit('player2', sphere.dispose());
-      
-     var go = function(){
-     sphere.dispose()
-     }
-      socket.emit('ademola', go());
-     if(pickResult.hit){
-      sphere.position.x = pickResult.pickedPoint.x
-sphere.position.y = pickResult.pickedPoint.y
-sphere.position.z = pickResult.pickedPoint.z
-sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.pickedPoint.z), 0, 0, 0);
-    var g = setInterval(function(){
-    sphere2.locallyTranslate(new BABYLON.Vector3(0, 0, -0.5))
-    if(sphere2.intersectsMesh(sphere)){
-      // clearInterval(g)
+    
     }
-    })
-        }
-      }
-      var pickResult = scene.pick(scene.pointerX, scene.pointerY)
-      scene.onPointerDown = function(){
-     
-       
-        var pickResult = scene.pick(scene.pointerX, scene.pointerY)
-  
       
-  socket.emit('ademola', 'try meee');
-     if(pickResult.hit){
-   sphere2.position.y = pickResult.pickedPoint.y
-   sphere2.position.x = pickResult.pickedPoint.x
-}
           
-      }
-      document.getElementById("myBtn").onclick = function(){
-      socket.emit('ademola', 'try meee');
-       
-      }
 })
          
-        var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-        ///////////////
-        socket.on('player2', function(hunts){
-          //return go;
-         });
-        ///////////////
-        var pickResult = scene.pick(scene.pointerX, scene.pointerY)
-        
-         socket.on('ademola', function(gme){
-   var pickResult = scene.pick(scene.pointerX, scene.pointerY)
-  sphere2.setEnabled(true);
-console.log('working...');
-setInterval(function(){
-sphere2.position.y = sphere.position.y;
-   sphere2.position.x = sphere.position.x;
-})
-     
-/*if(pickResult){
- if(pickResult.hit){
-  sphere.position.x = pickResult.pickedPoint.x
-sphere.position.y = pickResult.pickedPoint.y
-sphere.position.z = pickResult.pickedPoint.z
-sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.pickedPoint.z), 0, 0, 0);
-    var g = setInterval(function(){
-    sphere2.locallyTranslate(new BABYLON.Vector3(0, 0, -0.5))
-    if(sphere2.intersectsMesh(sphere)){
-      // clearInterval(g)
-    }
-    })
-}
-}*/
+       
+      
 
         
    
   ////////////////
-         document.getElementById("myBtn").innerHTML = gme;
-        });
         
         socket.on('ademola', function(gme){
        
         })
-   /* else if (this.value == 'bar'){
-        $(this).css('backgroundColor','green');
-    }
-    else $(this).css('backgroundColor','white');
-});*/
-        /*$( "#myBtn" ).click(function() {
-  socket.emit('chat message', 'hi');
-       socket.on('chat message', function(msg){
-         alert(msg);
-       });
-});*/
         
         socket.on('chat message', function(msg){
           document.getElementById('para').innerHTML = "nice try";
@@ -248,9 +150,9 @@ sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.picke
       });
           
           ////////////////MULT//////////////////////////////////////////
-            return scene;
-        
-        };
+    return scene;
+
+};
         
         var scene = createScene();
         engine.runRenderLoop(function () {
