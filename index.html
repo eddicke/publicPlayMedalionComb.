@@ -121,7 +121,7 @@ sphere2.material =  materialSphere2
         $("#m").keyup(function(e) { 
     if (this.value == 'foo'){
         $(this).css('backgroundColor','red');
-         sphere2.setEnabled(true);
+         
       socket.emit('ademola', 'try meee');
     
     }
@@ -137,7 +137,7 @@ sphere2.material =  materialSphere2
   ////////////////
         
         socket.on('ademola', function(gme){
-       
+       sphere2.setEnabled(true);
         })
         
         socket.on('chat message', function(msg){
