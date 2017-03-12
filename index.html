@@ -166,7 +166,7 @@ sphere3.material =  materialSphere1
         camera.target = newMeshes[0];
         skull = newMeshes[0]
         skull.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
-         
+         skull.setEnabled(false);
   
     $("#m").keyup(function(e) { 
     if (this.value == 'hunts'){
@@ -194,7 +194,7 @@ sphere3.material =  materialSphere1
           skull.position.x += 1
         });
          socket.on('player2-1', function(movedown){
-          sphere2.position.x -= 1
+          skull.position.x -= 1
            if(sphere2.intersectsMesh(sphere)){
           sphere2.dispose()
            }
@@ -202,7 +202,7 @@ sphere3.material =  materialSphere1
        
         //*************
         socket.on('ademola', function(gme){
-       sphere2.setEnabled(true);
+      skull.setEnabled(true);
           //sphere2.position.x = Math.random() * 2
         })
         });
