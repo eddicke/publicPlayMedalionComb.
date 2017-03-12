@@ -125,6 +125,7 @@ sphere2.material =  materialSphere2
       socket.emit('ademola', 'try meee');
     scene.onPointerDown = function(){
     socket.emit('ademola', 'scale');
+      go();
     }
     //scale sphere2
      
@@ -140,10 +141,16 @@ sphere2.material =  materialSphere2
         
    
   ////////////////
+        var go;
         socket.on('ademola', function(gme){
-       sphere2.scaling.x += 1.5;
+       var go = function(){
+    var pickResult = scene.pick(scene.pointerX, scene.pointerY)
+     if (pickResult.hit) {
+            sphere2.scaling.y += 3
+        }
+}
         })
-        
+        //*************
         socket.on('ademola', function(gme){
        sphere2.setEnabled(true);
         })
