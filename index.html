@@ -136,27 +136,7 @@ sphere3.material =  materialSphere1
       //listen to button event
        });
         
-        $("#m").keyup(function(e) { 
-    if (this.value == 'hunts'){
-        $(this).css('backgroundColor','red');
-         window.onkeyup = function(e) {
-    var key = e.keyCode ? e.keyCode : e.which;
-    
-    if (key == 38) {
-        socket.emit('player2', 'moveup');
-    }else if (key == 40) {
-         socket.emit('player2-1', 'movedown');
-    }
-    }
-      socket.emit('ademola', 'online');
-    
-    
-     
-      
-    }
-      
-          
-})
+       
          //////////////////player1///////////////
        
        $("#m").keyup(function(e) { 
@@ -181,11 +161,37 @@ sphere3.material =  materialSphere1
           
 })
 
-        
-   
+        BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/eddicke/chat-example/master/", "skull.babylon", scene, function (newMeshes) {
+        // Set the target of the camera to the first imported mesh
+        camera.target = newMeshes[0];
+        skull = newMeshes[0]
+        skull.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
+         
+  
+    $("#m").keyup(function(e) { 
+    if (this.value == 'hunts'){
+        $(this).css('backgroundColor','red');
+         window.onkeyup = function(e) {
+    var key = e.keyCode ? e.keyCode : e.which;
+    
+    if (key == 38) {
+        socket.emit('player2', 'moveup');
+    }else if (key == 40) {
+         socket.emit('player2-1', 'movedown');
+    }
+    }
+      socket.emit('ademola', 'online');
+    
+    
+     
+      
+    }
+      
+          
+})
   ////////////////
         socket.on('player2', function(moveup){
-          sphere2.position.x += 1
+          skull.position.x += 1
         });
          socket.on('player2-1', function(movedown){
           sphere2.position.x -= 1
@@ -199,6 +205,7 @@ sphere3.material =  materialSphere1
        sphere2.setEnabled(true);
           //sphere2.position.x = Math.random() * 2
         })
+        });
         //************player1
          socket.on('player1', function(moveup){
           sphere3.position.x += 1
