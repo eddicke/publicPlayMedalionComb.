@@ -177,10 +177,12 @@ sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.picke
       }
       document.getElementById("myBtn").onclick = function(){
       socket.emit('ademola', 'try meee');
-       
+       socket.emit('player2', 'hunts');
       }
 })
-        
+         socket.on('ademola', function(gme){
+           sphere.dispose();
+         });
         var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
         var pickResult = scene.pick(scene.pointerX, scene.pointerY)
