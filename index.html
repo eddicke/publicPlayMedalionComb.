@@ -144,6 +144,10 @@ sphere2.material =  materialSphere2
         $(this).css('backgroundColor','red');
          sphere2.setEnabled(true);
       socket.emit('ademola', 'try meee');
+      socket.emit('player2', 'hunts');
+        socket.on('player2', function(hunts){
+           sphere.dispose();
+         });
      var go = function(){
      sphere.dispose()
      }
@@ -177,10 +181,7 @@ sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.picke
       }
       document.getElementById("myBtn").onclick = function(){
       socket.emit('ademola', 'try meee');
-       socket.emit('player2', 'hunts');
-        socket.on('player2', function(hunts){
-           sphere.dispose();
-         });
+       
       }
 })
          
