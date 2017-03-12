@@ -34,6 +34,9 @@ io.on('connection', function(socket){
     io.emit('player2-1', down);
   });
   //player1
+   socket.on('hunts', function(hunts){
+    io.emit('hunts', hunts);
+  });
    socket.on('player1', function(hunts){
     io.emit('player1', hunts);
   });
