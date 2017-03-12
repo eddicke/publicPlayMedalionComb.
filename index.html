@@ -94,12 +94,22 @@ Your browser does not support the HTML5 canvas tag.</canvas>
       //let's initialize box2
       var materialSphere2 = new BABYLON.StandardMaterial("texture2", scene);
     materialSphere2.diffuseColor = new BABYLON.Color3(1, 0, 0);
-
+var materialSphere1 = new BABYLON.StandardMaterial("texture2", scene);
+    materialSphere1.diffuseColor = new BABYLON.Color3(0.4,0.9, 0);
+        
    var sphere2 = BABYLON.Mesh.CreateBox("sphere1", 2, scene);
 sphere2.material =  materialSphere2
     // Move the sphere upward 1/2 its height
     sphere2.position.z = 5;
     sphere2.setEnabled(false)
+        
+         var sphere3 = BABYLON.Mesh.CreateBox("sphere1", 2, scene);
+sphere3.material =  materialSphere1
+    // Move the sphere upward 1/2 its height
+    sphere3.position.z = 2;
+    sphere3.setEnabled(false)
+        
+        
         function go(){
           scene.onPointerDown = function(){
     var pickResult = scene.pick(scene.pointerX, scene.pointerY)
@@ -127,7 +137,7 @@ sphere2.material =  materialSphere2
        });
         
         $("#m").keyup(function(e) { 
-    if (this.value == 'foo'){
+    if (this.value == 'hunts'){
         $(this).css('backgroundColor','red');
          window.onkeyup = function(e) {
     var key = e.keyCode ? e.keyCode : e.which;
@@ -138,7 +148,7 @@ sphere2.material =  materialSphere2
          socket.emit('player2-1', 'movedown');
     }
     }
-      socket.emit('ademola', 'try meee');
+      socket.emit('ademola', 'online');
     scene.onPointerDown = function(){
     socket.emit('ademola', 'scale');
     }
@@ -149,18 +159,38 @@ sphere2.material =  materialSphere2
       
           
 })
-         
+         //////////////////player1///////////////
        
+       $("#m").keyup(function(e) { 
+    if (this.value == 'adem'){
+        $(this).css('backgroundColor','green');
+         window.onkeyup = function(e) {
+    var key = e.keyCode ? e.keyCode : e.which;
+    
+    if (key == 38) {
+        socket.emit('player1', 'moveup');
+    }else if (key == 40) {
+         socket.emit('player1-1', 'movedown');
+    }
+    }
+      socket.emit('chat message', 'online');
+    
+    //scale sphere2
+     
       
+    }
+      
+          
+})
 
         
    
   ////////////////
         socket.on('player2', function(moveup){
-          sphere2.position.y += 1.5
+          sphere2.position.x += 1.5
         });
          socket.on('player2-1', function(movedown){
-          sphere2.position.z -= 1.5
+          sphere2.position.x -= 1.5
            if(sphere2.intersectsMesh(sphere)){
           sphere2.dispose()
            }
@@ -173,8 +203,21 @@ sphere2.material =  materialSphere2
         //*************
         socket.on('ademola', function(gme){
        sphere2.setEnabled(true);
+          sphere2.position.x = Math.random() * 2
         })
-        
+        //************player1
+         socket.on('player1', function(moveup){
+          sphere3.position.x += 1.5
+        });
+         socket.on('player1-1', function(movedown){
+          sphere3.position.x -= 1.5
+          
+        });
+         socket.on('chat message', function(gme){
+       sphere3.setEnabled(true);
+          sphere3.position.x = Math.random() * 2
+        })
+        //////////************
         socket.on('chat message', function(msg){
           document.getElementById('para').innerHTML = "nice try";
           
