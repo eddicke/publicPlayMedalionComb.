@@ -17,9 +17,29 @@ io.on('connection', function(socket){
   socket.on('ademola', function(gme){
     io.emit('ademola', gme);
   });
+  //power up
+   socket.on('power', function(hunts){
+    io.emit('power', hunts);
+  });
+  //move down
+  socket.on('player2-1', function(down){
+    io.emit('player2-1', down);
+  });
   //player2
   socket.on('player2', function(hunts){
     io.emit('player2', hunts);
+  });
+  //move down
+  socket.on('player2-1', function(down){
+    io.emit('player2-1', down);
+  });
+  //player1
+   socket.on('player1', function(hunts){
+    io.emit('player1', hunts);
+  });
+  //move down
+  socket.on('player1-1', function(down){
+    io.emit('player1-1', down);
   });
 });
 
