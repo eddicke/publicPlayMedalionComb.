@@ -160,7 +160,10 @@ sphere2.material =  materialSphere2
           sphere2.position.y += 1.5
         });
          socket.on('player2-1', function(movedown){
-          sphere2.position.y -= 1.5
+          sphere2.position.z -= 1.5
+           if(sphere2.intersectsMesh(sphere)){
+           alert('hit')
+           }
         });
         socket.on('ademola', function(gme){
           setInterval(function(){
