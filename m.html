@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <p id = "para">try me!</p>
+    <button id = "myBtn"> click me </button>
+    <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+      <title>Babylon.js sample code</title>
+        <!-- Babylon.js -->
+        <script src="https://www.babylonjs.com/hand.minified-1.2.js"></script>
+        <script src="https://www.babylonjs.com/cannon.js"></script>
+        <script src="https://www.babylonjs.com/oimo.js"></script>
+        <script src="https://www.babylonjs.com/babylon.js"></script>
+   <div id="canvasZone">
+        <canvas id="renderCanvas"></canvas>
+</div>
+    <style>
+          #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+        </style>
+    <style>
+      
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      #messages { margin-bottom: 40px }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="https://cdn-orig.socket.io/socket.io-1.2.0.js"></script>
+     <script src="index.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  
+    <script>
+     
+         var canvas = document.getElementById("renderCanvas");
+        var engine = new BABYLON.Engine(canvas, true);
+        var createScene = function () {
+        
+            // This creates a basic Babylon Scene object (non-mesh)
+            var scene = new BABYLON.Scene(engine);
+        
+            // This creates and positions a free camera (non-mesh)
+            var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+        
+            // This targets the camera to scene origin
+            camera.setTarget(BABYLON.Vector3.Zero());
+        
+            // This attaches the camera to the canvas
+            camera.attachControl(canvas, true);
+        
+            // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+            var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+        
+            // Default intensity is 1. Let's dim the light a small amount
+            light.intensity = 0.7;
+        
+            // Our built-in 'sphere' shape. Params: name, subdivs, size, scene
+             var sphere = BABYLON.Mesh.CreateSphere("sphere1",10, 0.5, scene);
+        
+            // Move the sphere upward 1/2 its height
+            sphere.position.y = 1;
+        
+            // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
+            var ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
+        //multiplayer tryout----------------------------------------------
+          var online = 0;
+      
+      $(function () {
+        var socket = io();
+        
+        socket.on('connect', function() {
+  socket.emit('chat message', 'online buddy');
+           console.log('online');
+          socket.on('chat message', function(msg){
+             console.log(msg);
+             //document.getElementById("myBtn").innerHTML = 'nice bruh';
+            online += 1;
+             document.getElementById('para').innerHTML = online;
+             if(online > 3){
+               online = 3
+             }
+              if(online === 3){
+             document.getElementById('para').onclick = function(){
+             alert('hi');
+               socket.emit('chat message', 'you there');
+               /*socket.emit('chat message', 'you there');
+               socket.on('chat message', function(msg){
+                 document.getElementById("myBtn").innerHTML = msg;
+               });*/
+             }
+             socket.on('chat message', function(msg){
+                 document.getElementById("myBtn").innerHTML = msg;
+               })
+            }
+          })
+         
+});
+      
+      //let's initialize box2
+      var materialSphere2 = new BABYLON.StandardMaterial("texture2", scene);
+    materialSphere2.diffuseColor = new BABYLON.Color3(1, 0, 0);
+
+   var sphere2 = BABYLON.Mesh.CreateBox("sphere1", 2, scene);
+sphere2.material =  materialSphere2
+    // Move the sphere upward 1/2 its height
+    sphere2.position.z = 5;
+    sphere2.setEnabled(false)
+    ///////////////
+        
+        $('form').submit(function(){
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+     document.getElementById("myBtn").onclick = function(){
+           socket.emit('chat message', '50px');
+       socket.on('chat message', function(msg){
+         document.getElementById("myBtn").innerHTML = 'right!';
+       });
+          }
+       setInterval(function(){
+      socket.on('chat message', function(msg){
+      
+         document.getElementById("myBtn").style.width += msg;
+        });
+       });
+         var pickResult = scene.pick(scene.pointerX, scene.pointerY)
+        $("#m").keyup(function(e) { 
+    if (this.value == 'foo'){
+        $(this).css('backgroundColor','red');
+         sphere2.setEnabled(true);
+      socket.emit('ademola', 'try meee');
+     
+     if(pickResult.hit){
+      sphere.position.x = pickResult.pickedPoint.x
+sphere.position.y = pickResult.pickedPoint.y
+sphere.position.z = pickResult.pickedPoint.z
+sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.pickedPoint.z), 0, 0, 0);
+    var g = setInterval(function(){
+    sphere2.locallyTranslate(new BABYLON.Vector3(0, 0, -0.5))
+    if(sphere2.intersectsMesh(sphere)){
+      // clearInterval(g)
+    }
+    })
+        }
+      }
+      var pickResult = scene.pick(scene.pointerX, scene.pointerY)
+      scene.onPointerDown = function(){
+     
+       
+        var pickResult = scene.pick(scene.pointerX, scene.pointerY)
+  
+      
+  socket.emit('ademola', 'try meee');
+     
+          
+      }
+      document.getElementById("myBtn").onclick = function(){
+      socket.emit('ademola', 'try meee');
+       
+      }
+})
+        
+        var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+        var pickResult = scene.pick(scene.pointerX, scene.pointerY)
+        
+         socket.on('ademola', function(gme){
+   var pickResult = scene.pick(scene.pointerX, scene.pointerY)
+  sphere2.setEnabled(true);
+console.log('working...');
+if(pickResult.hit){
+   sphere2.position.y = pickResult.pickedPoint.y
+   sphere2.position.x = pickResult.pickedPoint.x
+}
+     
+/*if(pickResult){
+ if(pickResult.hit){
+  sphere.position.x = pickResult.pickedPoint.x
+sphere.position.y = pickResult.pickedPoint.y
+sphere.position.z = pickResult.pickedPoint.z
+sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.pickedPoint.z), 0, 0, 0);
+    var g = setInterval(function(){
+    sphere2.locallyTranslate(new BABYLON.Vector3(0, 0, -0.5))
+    if(sphere2.intersectsMesh(sphere)){
+      // clearInterval(g)
+    }
+    })
+}
+}*/
+
+        
+   
+  ////////////////
+         document.getElementById("myBtn").innerHTML = gme;
+        });
+        
+        socket.on('ademola', function(gme){
+       
+        })
+   /* else if (this.value == 'bar'){
+        $(this).css('backgroundColor','green');
+    }
+    else $(this).css('backgroundColor','white');
+});*/
+        /*$( "#myBtn" ).click(function() {
+  socket.emit('chat message', 'hi');
+       socket.on('chat message', function(msg){
+         alert(msg);
+       });
+});*/
+        
+        socket.on('chat message', function(msg){
+          document.getElementById('para').innerHTML = "nice try";
+          
+          
+          $('#messages').append($('<li>').text(msg));
+          window.scrollTo(0, document.body.scrollHeight);
+        });
+      });
+          
+          ////////////////MULT//////////////////////////////////////////
+            return scene;
+        
+        };
+        
+        var scene = createScene();
+        engine.runRenderLoop(function () {
+            scene.render();
+        });
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+      
+    </script>
+  </body>
+</html>
