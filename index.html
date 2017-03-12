@@ -166,7 +166,10 @@ sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.picke
   
       
   socket.emit('ademola', 'try meee');
-     
+     if(pickResult.hit){
+   sphere2.position.y = pickResult.pickedPoint.y
+   sphere2.position.x = pickResult.pickedPoint.x
+}
           
       }
       document.getElementById("myBtn").onclick = function(){
@@ -183,10 +186,10 @@ var ctx = c.getContext("2d");
    var pickResult = scene.pick(scene.pointerX, scene.pointerY)
   sphere2.setEnabled(true);
 console.log('working...');
-if(pickResult.hit){
-   sphere2.position.y = pickResult.pickedPoint.y
-   sphere2.position.x = pickResult.pickedPoint.x
-}
+setInterval(function(){
+sphere2.position.y = sphere.position.y;
+   sphere2.position.x = sphere.position.x;
+})
      
 /*if(pickResult){
  if(pickResult.hit){
