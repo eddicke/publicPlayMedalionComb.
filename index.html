@@ -123,7 +123,14 @@ sphere2.material =  materialSphere2
         $(this).css('backgroundColor','red');
          
       socket.emit('ademola', 'try meee');
-    
+    scene.onPointerDown = function(){
+    socket.emit('ademola', 'scale');
+    }
+    //scale sphere2
+     socket.on('ademola', function(gme){
+       sphere2.scaling.x = 5;
+        })
+      
     }
       
           
