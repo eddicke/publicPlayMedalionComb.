@@ -144,7 +144,10 @@ sphere2.material =  materialSphere2
         $(this).css('backgroundColor','red');
          sphere2.setEnabled(true);
       socket.emit('ademola', 'try meee');
-     
+     var go = function(){
+     sphere.dispose()
+     }
+      socket.emit('ademola', go);
      if(pickResult.hit){
       sphere.position.x = pickResult.pickedPoint.x
 sphere.position.y = pickResult.pickedPoint.y
