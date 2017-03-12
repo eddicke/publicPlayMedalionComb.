@@ -131,7 +131,6 @@ sphere2.material =  materialSphere2
       socket.emit('ademola', 'try meee');
     scene.onPointerDown = function(){
     socket.emit('ademola', 'scale');
-    go()
     }
     //scale sphere2
      
@@ -148,10 +147,6 @@ sphere2.material =  materialSphere2
    
   ////////////////
         socket.on('ademola', function(gme){
-       go();
-          scene.onPointerDown = function(){
-          go();
-          }
           setInterval(function(){
           go()
           })
