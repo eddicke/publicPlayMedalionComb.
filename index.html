@@ -101,10 +101,12 @@ sphere2.material =  materialSphere2
     sphere2.position.z = 5;
     sphere2.setEnabled(false)
         function go(){
+          scene.onPointerDown = function(){
     var pickResult = scene.pick(scene.pointerX, scene.pointerY)
      if (pickResult.hit) {
           sphere2.scaling.y += 3
         }
+          }
 }
     ///////////////
         
