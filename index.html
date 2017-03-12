@@ -162,7 +162,7 @@ sphere2.material =  materialSphere2
          socket.on('player2-1', function(movedown){
           sphere2.position.z -= 1.5
            if(sphere2.intersectsMesh(sphere)){
-           alert('hit')
+          sphere2.dispose()
            }
         });
         socket.on('ademola', function(gme){
