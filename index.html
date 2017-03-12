@@ -133,7 +133,7 @@ sphere2.material =  materialSphere2
     var key = e.keyCode ? e.keyCode : e.which;
     
     if (key == 38) {
-        socket.emit('player2', 'move up');
+        socket.emit('player2', 'moveup');
     }
     }
       socket.emit('ademola', 'try meee');
@@ -154,7 +154,7 @@ sphere2.material =  materialSphere2
         
    
   ////////////////
-        socket.on('player2', function(move up){
+        socket.on('player2', function(moveup){
           sphere2.position.y += 1.5
         });
         socket.on('ademola', function(gme){
