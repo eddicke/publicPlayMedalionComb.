@@ -180,7 +180,7 @@ sphere2.lookAt(new BABYLON.Vector3(pickResult.pickedPoint.x, 0, pickResult.picke
        socket.emit('player2', 'hunts');
       }
 })
-         socket.on('ademola', function(gme){
+         socket.on('player2', function(gme){
            sphere.dispose();
          });
         var c = document.getElementById("myCanvas");
