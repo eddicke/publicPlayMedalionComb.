@@ -134,6 +134,8 @@ sphere2.material =  materialSphere2
     
     if (key == 38) {
         socket.emit('player2', 'moveup');
+    }else if (key == 40) {
+         socket.emit('player2-1', 'movedown');
     }
     }
       socket.emit('ademola', 'try meee');
@@ -156,6 +158,9 @@ sphere2.material =  materialSphere2
   ////////////////
         socket.on('player2', function(moveup){
           sphere2.position.y += 1.5
+        });
+         socket.on('player2-1', function(movedown){
+          sphere2.position.y -= 1.5
         });
         socket.on('ademola', function(gme){
           setInterval(function(){
