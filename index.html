@@ -185,10 +185,10 @@ sphere3.material =  materialSphere1
    
   ////////////////
         socket.on('player2', function(moveup){
-          sphere2.position.x += 1.5
+          sphere2.position.x += 1
         });
          socket.on('player2-1', function(movedown){
-          sphere2.position.x -= 1.5
+          sphere2.position.x -= 1
            if(sphere2.intersectsMesh(sphere)){
           sphere2.dispose()
            }
@@ -197,19 +197,19 @@ sphere3.material =  materialSphere1
         //*************
         socket.on('ademola', function(gme){
        sphere2.setEnabled(true);
-          sphere2.position.x = Math.random() * 2
+          //sphere2.position.x = Math.random() * 2
         })
         //************player1
          socket.on('player1', function(moveup){
-          sphere3.position.x += 1.5
+          sphere3.position.x += 1
         });
          socket.on('player1-1', function(movedown){
-          sphere3.position.x -= 1.5
+          sphere3.position.x -= 1
           
         });
          socket.on('hunts', function(gme){
        sphere3.setEnabled(true);
-          sphere3.position.x = Math.random() * 2
+          //sphere3.position.x = Math.random() * 2
         })
         //////////************
         socket.on('chat message', function(msg){
