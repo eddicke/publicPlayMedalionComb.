@@ -72,7 +72,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
             sphere.position.y = 1;
         
             // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
-            var ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene);
+            var ground = BABYLON.Mesh.CreateGround("ground1", 36, 36, 2, scene);
         //multiplayer tryout----------------------------------------------
           var online = 0;
       
@@ -81,7 +81,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
         
         socket.on('connect', function() {
   socket.emit('chat message', 'online buddy');
-           console.log('online');
+          // console.log('online');
           socket.on('chat message', function(msg){
              console.log(msg);
              //document.getElementById("myBtn").innerHTML = 'nice bruh';
@@ -149,10 +149,8 @@ sphere3.material =  materialSphere1
     }
     }
       socket.emit('ademola', 'online');
-    scene.onPointerDown = function(){
-    socket.emit('ademola', 'scale');
-    }
-    //scale sphere2
+    
+    
      
       
     }
@@ -173,7 +171,7 @@ sphere3.material =  materialSphere1
          socket.emit('player1-1', 'movedown');
     }
     }
-      socket.emit('chat message', 'online');
+      socket.emit('hunts', 'online');
     
     //scale sphere2
      
@@ -195,11 +193,7 @@ sphere3.material =  materialSphere1
           sphere2.dispose()
            }
         });
-        socket.on('ademola', function(gme){
-          setInterval(function(){
-          go()
-          })
-        })
+       
         //*************
         socket.on('ademola', function(gme){
        sphere2.setEnabled(true);
@@ -213,7 +207,7 @@ sphere3.material =  materialSphere1
           sphere3.position.x -= 1.5
           
         });
-         socket.on('chat message', function(gme){
+         socket.on('hunts', function(gme){
        sphere3.setEnabled(true);
           sphere3.position.x = Math.random() * 2
         })
