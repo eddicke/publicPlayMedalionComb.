@@ -40,6 +40,10 @@ io.on('connection', function(socket){
    socket.on('player1', function(hunts){
     io.emit('player1', hunts);
   });
+  //state
+  socket.on('state', function(stats){
+    io.emit('state', stats);
+  });
   //move down
   socket.on('player1-1', function(down){
     io.emit('player1-1', down);
