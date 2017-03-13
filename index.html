@@ -218,7 +218,7 @@ sphere3.material =  materialSphere1
 			var bullet = bullets[i];
 if(bullet.intersectsMesh(skull)){
 	bullet.dispose();
-		socket.emit('state', 'stats');
+		socket.emit('state', 'SKULL HAS BEEN HIT!!!');
 		}
 			bullet.position.addInPlace(bullet.getDirection(BABYLON.Vector3.Right()).scaleInPlace(bulletSpeed));
 			
@@ -268,7 +268,7 @@ if(bullet.intersectsMesh(skull)){
           sphere3.position.x += 1
         });
 	      socket.on('state', function(stats){
-          alert('skull has been hit');
+          $('#messages').append($('<li>').text(stats));
         });
          socket.on('player1-1', function(movedown){
           sphere3.position.x -= 1
