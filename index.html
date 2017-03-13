@@ -213,7 +213,7 @@ sphere3.material =  materialSphere1
 		//collision test
 		scene.onPointerDown = function(evt, pickResult){
 		if(pickResult.hit){
-		socket.emit('state', console.log(pickResult.pickedPoint.x));
+		socket.emit('state', pickResult.pickedPoint.x);
 			
 		}
 		}
@@ -255,7 +255,7 @@ if(bullet.intersectsMesh(skull)){
 		////////////////////////////
 		socket.on('state', function(stats){
         
-		      //console.log(pickResult.pickedPoint.x);
+		    console.log(stats);
 });
 		//******************
   ////////////////
