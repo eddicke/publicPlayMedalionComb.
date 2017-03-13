@@ -76,7 +76,7 @@ BABYLON.Vector3.Left = function () {
 
 
 BABYLON.Vector3.Right = function () {
-	return new BABYLON.Vector3(0, 0, -1.0);
+	return new BABYLON.Vector3(0, 0, 1.0);
 };
       ///***************
         var createScene = function () {
@@ -219,7 +219,12 @@ sphere3.material =  materialSphere1
         skull = newMeshes[0]
         skull.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
          skull.setEnabled(false);
-  
+		//collision test
+   for (var i = 0; i < bullets.length; i++){
+		if(bullet.intersectsMesh(skull)){
+		socket.emit('state', 'stats');
+		}
+   }
     $("#m").keyup(function(e) { 
     if (this.value == 'hunts'){
         $(this).css('backgroundColor','red');
@@ -262,6 +267,9 @@ sphere3.material =  materialSphere1
          socket.on('player1', function(moveup){
           sphere3.position.x += 1
         });
+	      socket.on('state', function(stats){
+          alert('skull has been hit');
+        });
          socket.on('player1-1', function(movedown){
           sphere3.position.x -= 1
           
@@ -285,9 +293,7 @@ sphere3.material =  materialSphere1
 		bullet.position.copyFrom(sphere3.position.add(sphere3.getDirection(BABYLON.Vector3.Right()).scaleInPlace(barrelLength*.9)));
 		
 		bullet.rotation.copyFrom(sphere3.rotation);
-		if(bullet.intersectsMesh(sphere)){
-		alert('skull has been hit');
-		}
+		
 		bullets.push(bullet);
         });
         //////////////////////////
