@@ -140,7 +140,7 @@ sphere2.material =  materialSphere2
 	var barrelLength = 2;
 	var alpha = 0;
 	
-	var bulletMesh = BABYLON.MeshBuilder.CreateCylinder('bullet', { height: .2, diameter: 5 }, scene);
+	var bulletMesh = BABYLON.MeshBuilder.CreateCylinder('bullet', { height: 2, diameter: 5 }, scene);
 	bulletMesh.setEnabled(false);
         scene.registerBeforeRender(function () {
 		
@@ -285,7 +285,7 @@ sphere3.material =  materialSphere1
 		bullet.position.copyFrom(sphere3.position.add(sphere3.getDirection(BABYLON.Vector3.Right()).scaleInPlace(barrelLength*.9)));
 		
 		bullet.rotation.copyFrom(sphere3.rotation);
-		if(bullet.intersectsMesh(skull)){
+		if(bullet.intersectsMesh(sphere)){
 		alert('skull has been hit');
 		}
 		bullets.push(bullet);
