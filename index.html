@@ -268,7 +268,7 @@ if(bullet.intersectsMesh(skull)){
           sphere3.position.x += 1
         });
 	      socket.on('state', function(stats){
-          $('#messages').append($('<li>').text(stats));
+          document.getElementById('myBtn').innerHTML = stats;
         });
          socket.on('player1-1', function(movedown){
           sphere3.position.x -= 1
