@@ -214,10 +214,10 @@ sphere3.material =  materialSphere1
 		scene.onPointerDown = function(evt, pickResult){
 		if(pickResult.hit){
 		socket.emit('state', 'ray');
-			socket.on('state', function(stats){
+			//socket.on('state', function(stats){
         
 		      console.log(pickResult.pickedPoint.x);
-        });
+      //  });
 		}
 		}
 		scene.registerBeforeRender(function () {
