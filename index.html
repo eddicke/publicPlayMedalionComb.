@@ -220,6 +220,8 @@ sphere3.material =  materialSphere1
 			
 		}
 			socket.emit('state', pickResult.pickedPoint.x);
+			socket.emit('state', pickResult.pickedPoint.y);
+			socket.emit('state', pickResult.pickedPoint.z);
 		}
 		
 		
@@ -263,6 +265,8 @@ if(bullet.intersectsMesh(skull)){
         
 		    console.log(stats);
 			sphere.position.x = stats;
+			sphere.position.y = stats;
+			sphere.position.z = stats;
 });
 		//******************
   ////////////////
