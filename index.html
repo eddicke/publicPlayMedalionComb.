@@ -211,9 +211,11 @@ sphere3.material =  materialSphere1
         skull.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
          skull.setEnabled(false);
 		//collision test
+		var score = 0
 		scene.onPointerDown = function(evt, pickResult){
 		if(pickResult.hit){
-		socket.emit('state', pickResult.pickedPoint.x);
+			score = pickResult.pickedPoint.x
+		socket.emit('state', 'this'+score);
 			
 		}
 		}
