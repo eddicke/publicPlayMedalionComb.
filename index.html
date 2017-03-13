@@ -48,6 +48,37 @@ Your browser does not support the HTML5 canvas tag.</canvas>
      
          var canvas = document.getElementById("renderCanvas");
         var engine = new BABYLON.Engine(canvas, true);
+      //for reference
+      var createScene = function () {
+
+    	var result = BABYLON.Vector3.Zero();
+
+	this.getDirectionToRef(localAxis, result);
+	
+	return result;
+
+};
+
+
+BABYLON.Node.prototype.getDirectionToRef = function (localAxis, result) {
+
+	BABYLON.Vector3.TransformNormalToRef(localAxis, this.getWorldMatrix(), result);
+
+};
+
+BABYLON.Vector3.Forward = function () {
+	return new BABYLON.Vector3(0, 0, 1.0);
+};
+
+BABYLON.Vector3.Left = function () {
+	return new BABYLON.Vector3(-1.0, 0, 0);
+};
+
+
+BABYLON.Vector3.Right = function () {
+	return new BABYLON.Vector3(0, 0, -1.0);
+};
+      ///***************
         var createScene = function () {
         
             var scene = new BABYLON.Scene(engine);
@@ -102,7 +133,26 @@ sphere2.material =  materialSphere2
     // Move the sphere upward 1/2 its height
     sphere2.position.z = 5;
     sphere2.setEnabled(false)
-        
+        //all for sphere2
+      var bullets = [];
+	var bulletSpeed = .3;
+	
+	var barrelLength = 2;
+	var alpha = 0;
+	
+	var bulletMesh = BABYLON.MeshBuilder.CreateCylinder('bullet', { height: .2, diameter: .2 }, scene);
+	bulletMesh.setEnabled(false);
+        scene.registerBeforeRender(function () {
+		
+    for (var i = 0; i < bullets.length; i++){
+			
+			var bullet = bullets[i];
+
+			bullet.position.addInPlace(bullet.getDirection(BABYLON.Vector3.Right()).scaleInPlace(bulletSpeed));
+			
+		}
+    })
+        /////////////***************
          var sphere3 = BABYLON.Mesh.CreateBox("sphere1", 2, scene);
 sphere3.material =  materialSphere1
     // Move the sphere upward 1/2 its height
@@ -153,7 +203,9 @@ sphere3.material =  materialSphere1
     }
       socket.emit('hunts', 'online');
     
-    //scale sphere2
+   scene.onPointerDown = function(){
+   socket.emit('power', 'shoot');
+   }
      
       
     }
@@ -214,6 +266,29 @@ sphere3.material =  materialSphere1
           sphere3.position.x -= 1
           
         });
+        socket.on('power', function(shoot){
+         ///shooting
+          var bullet = bulletMesh.createInstance('bullet' + bullets.length);
+		
+		/*
+		var direction = container.getDirection(BABYLON.Vector3.Up());
+		
+		direction.scaleInPlace(1.8);
+		
+		bullet.position.x = container.position.x + direction.x;
+		bullet.position.y = container.position.y + direction.y;
+		bullet.position.z = container.position.z + direction.z;
+		
+		bullet.position.copyFrom(container.position.add(direction.scaleInPlace(1.8)));
+		*/
+		
+		bullet.position.copyFrom(sphere2.position.add(sphere2.getDirection(BABYLON.Vector3.Right()).scaleInPlace(barrelLength*.9)));
+		
+		bullet.rotation.copyFrom(sphere2.rotation);
+		
+		bullets.push(bullet);
+        });
+        //////////////////////////
          socket.on('hunts', function(gme){
        sphere3.setEnabled(true);
           //sphere3.position.x = Math.random() * 2
