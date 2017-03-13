@@ -142,16 +142,7 @@ sphere2.material =  materialSphere2
 	
 	var bulletMesh = BABYLON.MeshBuilder.CreateCylinder('bullet', { height: 6, diameter: 5 }, scene);
 	bulletMesh.setEnabled(false);
-        scene.registerBeforeRender(function () {
-		
-    for (var i = 0; i < bullets.length; i++){
-			
-			var bullet = bullets[i];
-
-			bullet.position.addInPlace(bullet.getDirection(BABYLON.Vector3.Right()).scaleInPlace(bulletSpeed));
-			
-		}
-    })
+        
         /////////////***************
          var sphere3 = BABYLON.Mesh.CreateBox("sphere1", 2, scene);
 sphere3.material =  materialSphere1
@@ -220,11 +211,19 @@ sphere3.material =  materialSphere1
         skull.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
          skull.setEnabled(false);
 		//collision test
-   for (var i = 0; i < bullets.length; i++){
-		if(bullet.intersectsMesh(skull)){
+		scene.registerBeforeRender(function () {
+		
+    for (var i = 0; i < bullets.length; i++){
+			
+			var bullet = bullets[i];
+if(bullet.intersectsMesh(skull)){
 		socket.emit('state', 'stats');
 		}
-   }
+			bullet.position.addInPlace(bullet.getDirection(BABYLON.Vector3.Right()).scaleInPlace(bulletSpeed));
+			
+		}
+    })
+   //////////////////////****
     $("#m").keyup(function(e) { 
     if (this.value == 'hunts'){
         $(this).css('backgroundColor','red');
