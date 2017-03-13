@@ -217,6 +217,7 @@ sphere3.material =  materialSphere1
 			
 			var bullet = bullets[i];
 if(bullet.intersectsMesh(skull)){
+	bullet.dispose();
 		socket.emit('state', 'stats');
 		}
 			bullet.position.addInPlace(bullet.getDirection(BABYLON.Vector3.Right()).scaleInPlace(bulletSpeed));
