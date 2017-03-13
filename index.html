@@ -211,18 +211,8 @@ sphere3.material =  materialSphere1
         skull.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
          skull.setEnabled(false);
 		//collision test
-		var score = 0
-		scene.onPointerDown = function(evt, pickResult){
-			var pickResult = scene.pick(scene.pointerX, scene.pointerY);
-		if(pickResult.hit){
-			score = pickResult.pickedPoint.x
-		console.log(pickResult.pickedPoint.x);
-			
-		}
-			socket.emit('state', pickResult.pickedPoint.x);
-			socket.emit('state', pickResult.pickedPoint.y);
-			socket.emit('state', pickResult.pickedPoint.z);
-		}
+		
+		
 		
 		
 		scene.registerBeforeRender(function () {
@@ -242,6 +232,18 @@ if(bullet.intersectsMesh(skull)){
     $("#m").keyup(function(e) { 
     if (this.value == 'hunts'){
         $(this).css('backgroundColor','red');
+	    //ray test in a c-s
+	  scene.onPointerDown = function(evt, pickResult){
+			var pickResult = scene.pick(scene.pointerX, scene.pointerY);
+		if(pickResult.hit){
+			
+		console.log(pickResult.pickedPoint.x);
+			
+		}
+			socket.emit('state', pickResult.pickedPoint.x);
+			
+		}
+	    /////************
          window.onkeyup = function(e) {
     var key = e.keyCode ? e.keyCode : e.which;
     
@@ -265,8 +267,7 @@ if(bullet.intersectsMesh(skull)){
         
 		    console.log(stats);
 			sphere.position.x = stats;
-			sphere.position.y = stats;
-			sphere.position.z = stats;
+			
 });
 		//******************
   ////////////////
