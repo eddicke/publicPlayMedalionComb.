@@ -213,11 +213,8 @@ sphere3.material =  materialSphere1
 		//collision test
 		scene.onPointerDown = function(evt, pickResult){
 		if(pickResult.hit){
-		socket.emit('state', 'ray');
-			//socket.on('state', function(stats){
-        
-		      console.log(pickResult.pickedPoint.x);
-      //  });
+		socket.emit('state', console.log(pickResult.pickedPoint.x));
+			
 		}
 		}
 		scene.registerBeforeRender(function () {
@@ -255,6 +252,12 @@ if(bullet.intersectsMesh(skull)){
       
           
 })
+		////////////////////////////
+		socket.on('state', function(stats){
+        
+		      //console.log(pickResult.pickedPoint.x);
+});
+		//******************
   ////////////////
         socket.on('player2', function(moveup){
           skull.position.x += 1
