@@ -213,12 +213,16 @@ sphere3.material =  materialSphere1
 		//collision test
 		var score = 0
 		scene.onPointerDown = function(evt, pickResult){
+			var pickResult = scene.pick(scene.pointerX, scene.pointerY);
 		if(pickResult.hit){
 			score = pickResult.pickedPoint.x
-		socket.emit('state', 'this'+score);
+		console.log(pickResult.pickedPoint.x);
 			
 		}
+			socket.emit('state', pickResult.pickedPoint.x);
 		}
+		
+		
 		scene.registerBeforeRender(function () {
 		
     for (var i = 0; i < bullets.length; i++){
