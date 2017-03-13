@@ -76,7 +76,7 @@ BABYLON.Vector3.Left = function () {
 
 
 BABYLON.Vector3.Right = function () {
-	return new BABYLON.Vector3(0, 0, -1.0);
+	return new BABYLON.Vector3(0, 0, 1.0);
 };
       ///***************
         var createScene = function () {
@@ -285,7 +285,9 @@ sphere3.material =  materialSphere1
 		bullet.position.copyFrom(sphere3.position.add(sphere3.getDirection(BABYLON.Vector3.Right()).scaleInPlace(barrelLength*.9)));
 		
 		bullet.rotation.copyFrom(sphere3.rotation);
-		
+		if(bullet.intersectsMesh(skull)){
+		alert('skull has been hit');
+		}
 		bullets.push(bullet);
         });
         //////////////////////////
