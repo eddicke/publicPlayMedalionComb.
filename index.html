@@ -282,9 +282,9 @@ sphere3.material =  materialSphere1
 		bullet.position.copyFrom(container.position.add(direction.scaleInPlace(1.8)));
 		*/
 		
-		bullet.position.copyFrom(sphere2.position.add(sphere2.getDirection(BABYLON.Vector3.Right()).scaleInPlace(barrelLength*.9)));
+		bullet.position.copyFrom(sphere3.position.add(sphere3.getDirection(BABYLON.Vector3.Right()).scaleInPlace(barrelLength*.9)));
 		
-		bullet.rotation.copyFrom(sphere2.rotation);
+		bullet.rotation.copyFrom(sphere3.rotation);
 		
 		bullets.push(bullet);
         });
