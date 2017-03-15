@@ -102,7 +102,14 @@ BABYLON.Vector3.Right = function () {
             // Move the sphere upward 1/2 its height
             sphere.position.y = 1;
         //test for webcam
-        
+        var plane = BABYLON.Mesh.CreatePlane("sphere1", 7, scene);
+	plane.rotation.z = Math.PI;
+
+    // Move the sphere upward 1/2 its height
+    plane.position.y = 1;
+	
+	var mat = new BABYLON.StandardMaterial("mat", scene);
+    mat.diffuseColor = BABYLON.Color3.White();
             // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
             var ground = BABYLON.Mesh.CreateGround("ground1", 36, 36, 2, scene);
         //multiplayer tryout----------------------------------------------
@@ -212,7 +219,9 @@ sphere3.material =  materialSphere1
         skull.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
          skull.setEnabled(false);
          //webcam test
+		scene.onPointerDown = function(){
          socket.emit('webcam', 'webcam');
+		}
 		//collision test
 		
 		
@@ -274,14 +283,7 @@ if(bullet.intersectsMesh(skull)){
 });
 		//******************
      socket.on('webcam', function(webcam){
-         	var plane = BABYLON.Mesh.CreatePlane("sphere1", 7, scene);
-	plane.rotation.z = Math.PI;
-
-    // Move the sphere upward 1/2 its height
-    plane.position.y = 1;
-	
-	var mat = new BABYLON.StandardMaterial("mat", scene);
-    mat.diffuseColor = BABYLON.Color3.White();
+         	
 
     BABYLON.VideoTexture.CreateFromWebCam(scene, function(videoTexture) {
         mat.emissiveTexture = videoTexture;
