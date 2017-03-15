@@ -21,6 +21,10 @@ io.on('connection', function(socket){
    socket.on('power', function(hunts){
     io.emit('power', hunts);
   });
+  //webcam
+socket.on('webcam', function(webcam){
+    io.emit('webcam', webcam);
+  });
   //move down
   socket.on('player2-1', function(down){
     io.emit('player2-1', down);
@@ -49,12 +53,6 @@ io.on('connection', function(socket){
     io.emit('player1-1', down);
   });
 });
-//webcam
-socket.on('webcam', function(webcam){
-    io.emit('webcam', webcam);
-  });
-});
-
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
