@@ -49,6 +49,11 @@ io.on('connection', function(socket){
     io.emit('player1-1', down);
   });
 });
+//webcam
+socket.on('webcam', function(webcam){
+    io.emit('webcam', webcam);
+  });
+});
 
 http.listen(port, function(){
   console.log('listening on *:' + port);
