@@ -217,11 +217,17 @@ sphere3.material =  materialSphere1
           
 })
 
-        BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/eddicke/chat-example/master/", "skull.babylon", scene, function (newMeshes) {
-        // Set the target of the camera to the first imported mesh
-        camera.target = newMeshes[0];
-        skull = newMeshes[0]
-        skull.scaling = new BABYLON.Vector3(0.4, 0.4, 0.4)
+    var offset = 4
+	BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/eddicke/wevgl/master/", "megabot2.babylon", scene, function (newMeshes, particleSystems, skeletons) {
+	    var skull = newMeshes[0];
+		var skeleton = skeletons[0];
+	//	console.log(skeleton.bones)
+	    skull.rotation.y = 2*Math.PI;
+		dude.scaling = new BABYLON.Vector3(0.5,0.5,0.5);
+	   skull.position = new BABYLON.Vector3(0, 0, 0);
+		skeleton.position = new BABYLON.Vector3(0, 0, 0);
+		skeleton.scaling = new BABYLON.Vector3(0.02,0.02,0.02);
+		scene.beginAnimation(skeletons[0], 0, 150, true, 1.5);
          skull.setEnabled(false);
 		//collision test
 		
